@@ -1,0 +1,12 @@
+{% extends "layouts/layout.html.twig" %}
+
+{% block bodyContent %}
+    <div id="mainCol">
+        <div id="title">
+            <h1>Modifier un gros mot</h1>
+            <a href="{{ path('app_word_index') }}">Retour</a>
+        </div>
+
+        {% include "/word/form.html.twig" %}
+    </div>
+{% endblock %}

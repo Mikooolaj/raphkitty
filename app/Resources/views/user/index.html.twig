@@ -1,0 +1,52 @@
+{% extends "layouts/layout.html.twig" %}
+
+{% block bodyContent %}
+    <div id="mainCol">
+
+        <div id="title">
+            <h1>Liste des personnes</h1>
+            <a href="{{ path('app_user_new') }}">Ajouter</a>
+        </div>
+
+        <div id="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Nombre de gros mots</th>
+                        <th>Ardoise</th>
+                        <th></th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% if users is empty %}
+                        <tr>
+                            <td class="noresult" colspan="5"><strong>Aucun résultat</strong></td>
+                        </tr>
+                    {% else %}
+                    kikou
+                        {% for user in users %}
+                        <tr>
+                            <td><strong><a href="{{ path('app_user_edit', { 'id': user.id }) }}" ?>{{ user.name }}</a></strong></td>
+                            <td>x gros mots</td>
+                            <td><strong>{{ user.balance }}</strong></td>
+                            <td></td>
+                            <td>
+                                <span class="edit"><a href="{{ path('app_user_edit', { 'id': user.id }) }}">Modifier</a></span>
+                                <span class="delete"><a href="{{ path('app_user_delete', { 'id': user.id }) }}">Supprimer</a></span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+{% endblock %}

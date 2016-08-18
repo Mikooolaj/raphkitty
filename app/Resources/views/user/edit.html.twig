@@ -1,0 +1,12 @@
+{% extends "layouts/layout.html.twig" %}
+
+{% block bodyContent %}
+    <div id="mainCol">
+        <div id="title">
+            <h1>Modifier une personne</h1>
+            <a href="{{ path('app_user_index') }}">Retour</a>
+        </div>
+
+        {% include "/user/form.html.twig" %}
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "layouts/layout.html.twig" %}
+
+{% block bodyContent %}
+    <div id="mainCol">
+
+        <div id="title">
+            <h1>Liste des personnes</h1>
+            <a href="{{ path('app_userword_new') }}">Ajouter</a>
+        </div>
+
+        <div id="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Personne</th>
+                        <th>Gros mot</th>
+                        <th>Nombre</th>
+                        <th></th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% if userwords is empty %}
+                        <tr>
+                            <td class="noresult" colspan="5"><strong>Aucun résultat</strong></td>
+                        </tr>
+                    {% else %}
+                        {% for userword in userwords %}
+                        <tr>
+                            <td><strong>{{ userword.user.name }}</strong></td>
+                            <td><strong>{{ userword.word.name }}</strong></td>
+                            <td></td>
+                            <td>
+                                <span class="edit"><a href="{{ path('app_userword_edit', { 'id': userword.id }) }}">Modifier</a></span>
+                                <span class="delete"><a href="{{ path('app_userword_delete', { 'id': userword.id }) }}">Supprimer</a></span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "layouts/layout.html.twig" %}
+
+{% block bodyContent %}
+    <div id="mainCol">
+
+        <div id="title">
+            <h1>Liste des gros mots</h1>
+            <a href="{{ path('app_word_new') }}">Ajouter</a>
+        </div>
+
+        <div id="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                        <th>Nombre d'utilisation</th>
+                        <th></th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% if words is empty %}
+                        <tr>
+                            <td class="noresult" colspan="5"><strong>Aucun résultat</strong></td>
+                        </tr>
+                    {% else %}
+                        {% for word in words %}
+                        <tr>
+                            <td><strong><a href="{{ path('app_word_edit', { 'id': word.id }) }}" ?>{{ word.name }}</a></strong></td>
+                            <td><strong>{{ word.price }}</strong></td>
+                            <td>x utilisations</td>
+                            <td></td>
+                            <td>
+                                <span class="edit"><a href="{{ path('app_word_edit', { 'id': word.id }) }}">Modifier</a></span>
+                                <span class="delete"><a href="{{ path('app_word_delete', { 'id': word.id }) }}">Supprimer</a></span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+{% endblock %}

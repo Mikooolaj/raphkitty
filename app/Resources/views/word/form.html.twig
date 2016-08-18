@@ -1,0 +1,46 @@
+{{ form_start(form, {'method': 'POST'}) }}
+
+    <div id="form">
+        {{ form_errors(form) }}
+
+        {% for type, flashMessages in app.session.flashbag.all() %}
+            {% for flashMessage in flashMessages %}
+                <div id="flash" class="flash-{{ type }}">
+                    <p class="{{ type }}">{{ flashMessage }}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <table>
+            <tbody>
+                <tr>
+                    <th>{{ form_label(form.name, "Nom") }}</th>
+                    <td>
+                        {{ form_widget(form.name) }}
+                        {{ form_errors(form.name) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{ form_label(form.price, "Prix") }}</th>
+                    <td>
+                        {{ form_widget(form.price) }}
+                        {{ form_errors(form.price) }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="infos">
+        <div class="rubric">
+            <h3>Informations</h3>
+            <p>Créé le <strong>{{ form.vars.value.createdAt | date("d/m/Y @ h:i:s") }}</strong></p>
+            <p>Modifié le <strong>{{ form.vars.value.updatedAt | date("d/m/Y @ h:i:s") }}</strong></p>
+            <p>
+                {{ form_rest(form) }}
+                {{ form_row(form.submit) }}
+            </p>
+        </div>
+    </div>
+
+{{ form_end(form) }}
